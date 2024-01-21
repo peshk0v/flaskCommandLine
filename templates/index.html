@@ -1,0 +1,33 @@
+{% block head %}
+    <title>Command Line</title>
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/index.css') }}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+{% endblock %}
+
+{% block body %}
+<h1>Command Line</h1>
+
+<style>body{text-align: center; background-color: #d9d9d9;}</style>
+<div class="window">
+    
+    {% for i in range(lenlogs) %}
+        {% if logs[i]["type"] == "user" %}
+            <usermessage>{{logs[i]["text"]}}</usermessage>
+        {% elif logs[i]["type"] == "system" %}
+            <systemessage>{{logs[i]["text"]}}</systemessage>
+        {% else %}
+            {{logs[i]["text"]}}
+        {% endif %}
+        <br />
+    {% endfor %}
+
+    <form action="{{ url_for('sendcommand') }}" method="post">
+		<div class="mb-3">
+			<input type="text" name="command" id="command" class="form-control">
+		</div>
+        <button type="submit" class="btn btn-primary">Send</button>
+    </form>
+</div>
+
+{% endblock %}

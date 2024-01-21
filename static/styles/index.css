@@ -1,0 +1,11 @@
+.window {
+    background-color: black;
+    color: #adadad;
+    text-align: left;
+}
+.window systemessage {
+    color: #008b1e;
+}
+.window usermessage {
+    color: #484bff;
+}
